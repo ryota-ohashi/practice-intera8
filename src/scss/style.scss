@@ -1,9 +1,5 @@
 @import "./reset.scss";
 
-// :root{
-//   --loading-progress: 100deg;
-// }
-
 #app{
   width: 100vw;
   height: 100vh;
@@ -14,20 +10,58 @@
   overflow: hidden;
 }
 
+h1{
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.nav{
+  max-width: 800px;
+  & > p{
+    margin-bottom: 10px;
+  }
+  & .error{
+    color: red;
+  }
+}
+
+.input-wrap{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 100px;
+  & label {
+    position: relative;
+    & span{
+      position: absolute;
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      top: 0;
+      left: -25px;
+    }
+  }
+  & input{
+    border: 1px solid #000;
+  }
+}
+
 .wrap{
   position: relative;
   &::before{
     position: absolute;
     content: "";
     display: block;
-    width: 150px;
-    height: 8px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 3px;
-    top: 50px;
-    left: -20px;
-    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 65px 20px 0 20px;
+    border-color: #9c9c9c transparent transparent transparent;
+    top: -70px;
+    left: calc(50% - 20px);
     z-index: 2;
   }
 }
@@ -37,17 +71,14 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
+  border: 1px solid gray ;
   background: conic-gradient(
-    #f00 0deg 90deg,
-    #0f0 90deg 180deg,
-    #00f 180deg 270deg,
-    #000 270deg 360deg
+    #FFF 0deg 360deg,
   );
   transform: rotate(0deg);
 }
 
-.start{
-  margin-top: 40px;
+.btn{
   width: 120px;
   height: 40px;
   border-radius: 20px;
@@ -55,4 +86,30 @@
   justify-content: center;
   align-items: center;
   border: 2px solid #000;
+  &--add{
+    margin: 0 auto 60px;
+  }
+  &--start{
+    margin-top: 40px;
+  }
+}
+
+.result{
+  position: fixed;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid #000;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  z-index: 3;
+  &.show{
+    opacity: 1;
+    visibility: visible;
+  }
 }
