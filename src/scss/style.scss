@@ -1,0 +1,58 @@
+@import "./reset.scss";
+
+// :root{
+//   --loading-progress: 100deg;
+// }
+
+#app{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.wrap{
+  position: relative;
+  &::before{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 150px;
+    height: 8px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 3px;
+    top: 50px;
+    left: -20px;
+    transform: rotate(45deg);
+    z-index: 2;
+  }
+}
+
+.roulette{
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #f00 0deg 90deg,
+    #0f0 90deg 180deg,
+    #00f 180deg 270deg,
+    #000 270deg 360deg
+  );
+  transform: rotate(0deg);
+}
+
+.start{
+  margin-top: 40px;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+}
