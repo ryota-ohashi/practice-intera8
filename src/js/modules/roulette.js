@@ -29,7 +29,7 @@ export default class Roulette {
     // 角度の初期値を取得
     const initDeg = window.getComputedStyle(this.roulette).transform;
     // ランダムに回す角度を決定
-    const finishDeg = 3600 + Math.floor(360 * Math.random());
+    const finishDeg = 3600 + Math.floor(359 * Math.random());
 
     // アニメーション定義
     const animation = [
@@ -72,7 +72,7 @@ export default class Roulette {
     const deg = 360 - correctDeg;
     const perDeg = 360 / this.inputedCount;
     for (let i = 0; i < this.inputedCount; i++) {
-      if(deg > perDeg * i && deg <= perDeg * (i + 1)) return this.colorList[i];
+      if(deg >= perDeg * i && deg < perDeg * (i + 1)) return this.colorList[i];
     }
   }
   judgeInput(){
@@ -115,12 +115,15 @@ export default class Roulette {
     const perColor = 360 / count;
 
     let gradient = "conic-gradient("
-    if (count > 0) gradient += this.colorList[0] + " 0deg " + perColor + "deg"
-    if (count > 1) gradient += "," + this.colorList[1] + " " + perColor + "deg " + perColor * 2 + "deg"
-    if (count > 2) gradient += "," + this.colorList[2] + " " + perColor * 2 + "deg " + perColor * 3 + "deg"
-    if (count > 3) gradient += "," + this.colorList[3] + " " + perColor * 3 + "deg " + perColor * 4 + "deg"
-    if (count > 4) gradient += "," + this.colorList[4] + " " + perColor * 4 + "deg " + perColor * 5 + "deg"
-    if (count > 5) gradient += "," + this.colorList[5] + " " + perColor * 5 + "deg " + perColor * 6 + "deg"
+
+    for (let i = 0; i < count; i++) {
+      if (i === 0){
+        gradient += this.colorList[0] + " 0deg " + perColor + "deg"
+      }else{
+        gradient += "," + this.colorList[i] + " " + perColor * i + "deg " + perColor * (i + 1) + "deg"
+      }
+    }
+
     gradient += ")"
 
     this.roulette.style.background = gradient;

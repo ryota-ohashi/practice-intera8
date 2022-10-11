@@ -1,5 +1,9 @@
 @import "./reset.scss";
 
+body{
+  overflow-x: hidden;
+}
+
 #app{
   width: 100vw;
   display: flex;
